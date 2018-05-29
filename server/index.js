@@ -6,6 +6,7 @@ const bodyParser = require('body-parser');
 
 // UNCOMMENT FOR SEQUELIZE
 require('../database-mysql');
+
 const db = require('../database-mysql/schema');
 
 const app = express();
@@ -23,6 +24,9 @@ app.use(express.static(__dirname + '/../react-client/dist'));
 
 app.get('/api/lines', (req, res) => {
 	// TODO - your code here!
+	db.service_lines.findAll({}).then(lines => {
+		res.json(lines);
+	});
 });
 
 // Write additional route handlers as needed below!
